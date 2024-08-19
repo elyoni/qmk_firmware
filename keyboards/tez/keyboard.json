@@ -37,6 +37,20 @@
     "rgblight" : {
         "led_count": 4,
         "sleep": true,
+        "default": {
+            "on": false,
+
+        },
+        "animations": {
+            "breathing": true,
+            "knight": true,
+            "rainbow_mood": true,
+        }
+        "layers" : {
+            "blink": false,
+            "enabled": true,
+        }
+
         "split": true,
         "split_count": [2, 2]
     },
