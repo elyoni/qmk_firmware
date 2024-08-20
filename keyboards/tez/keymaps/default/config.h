@@ -4,6 +4,9 @@
 #define TAPPING_TERM 150
 #define DEBOUNCE 5
 #define PERMISSIVE_HOLD
+#define RGBLIGHT_LIMIT_VAL 100
+#define RGBLIGHT_EFFECT_BREATHE_MAX RGBLIGHT_LIMIT_VAL
+#define RGBLIGHT_VAL_STEP 5
 
 // wiring of each half
 #define MATRIX_ROW_PINS { B3, B2, B6, B4 }

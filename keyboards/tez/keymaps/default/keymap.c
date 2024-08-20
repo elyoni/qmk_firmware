@@ -101,46 +101,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-
-#ifdef RGBLIGHT_ENABLE
-#define LED_BRIGHTNESS 10
-#define HSV_LED_ORANGE 28, 255, 16
-#define HSV_LED_OFF 0, 0, 0
-#define HSV_LED_RED 0, 255, LED_BRIGHTNESS
-#define HSV_LED_GREEN 85, 255, LED_BRIGHTNESS
-#define HSV_LED_CYAN 128, 255, LED_BRIGHTNESS
-#define HSV_LED_YELLOW 63, 100, LED_BRIGHTNESS
-#define HSV_LED_TEST 100, 50, LED_BRIGHTNESS
-#endif
-
 #ifdef RGBLIGHT_ENABLE
 layer_state_t layer_state_set_user(layer_state_t state) {
   uint8_t layer = get_highest_layer(state);
   switch (layer) {
       case BASE:
-          rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-          rgblight_sethsv(HSV_LED_OFF);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_sethsv(HSV_OFF);
         break;
       case MOVE:
-          rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+3);
-          rgblight_sethsv(HSV_LED_RED);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+            rgblight_sethsv(HSV_BLUE);
         break;
       case NUMPAD:
-          rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+3);
-          rgblight_sethsv(HSV_LED_GREEN);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+            rgblight_sethsv(HSV_GREEN);
         break;
       case MOUSE_F:
-          rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+3);
-          rgblight_sethsv(HSV_LED_CYAN);
+          rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+          rgblight_sethsv(HSV_CYAN);
         break;
       case SYMB:
-          rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+3);
-          rgblight_sethsv(HSV_LED_YELLOW);
+          rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+          rgblight_sethsv(HSV_GOLD);
         break;
   case GAMEM_L:
   case GAMEM_R:
           rgblight_mode_noeeprom(RGBLIGHT_MODE_KNIGHT);
-          rgblight_sethsv(HSV_LED_TEST);
         break;
       default:
         break;
