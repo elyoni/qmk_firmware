@@ -39,7 +39,7 @@
         "sleep": true,
         "default": {
             "on": false,
-
+            "val": 10
         },
         "animations": {
             "breathing": true,
