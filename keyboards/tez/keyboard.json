@@ -14,10 +14,15 @@
     },
     "diode_direction": "COL2ROW",
     "split": {
+        "enabled": true,
         "soft_serial_pin": "D1",
         "usb_detect": {
             "enabled": true
         }
+        "transport": {
+            "protocol": "serial",
+            "watchdog": true
+        },
     },
     "processor": "atmega32u4",
     "bootloader": "caterina",
@@ -34,16 +39,23 @@
         "rgblight": true,
         "audio": false
     },
+    "tapping": {
+        "permissive_hold": true,
+        "term": 150
+    },
     "rgblight" : {
         "led_count": 4,
         "sleep": true,
         "default": {
-            "on": false,
-            "val": 10
+            "on": true,
+            "animation": "snake",
         },
+        "max_brightness": 5,
+        "brightness_steps": 5,
         "animations": {
             "breathing": true,
             "knight": true,
+            "snake": true,
             "rainbow_mood": true,
         }
         "layers" : {
