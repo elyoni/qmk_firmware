@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NUMPAD] = LAYOUT_v3(
             KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_COPY,      KC_PASTE,                   KC_PLUS,             KC_7,                MT(MOD_RSFT, KC_8),  KC_9,                KC_SLASH ,
-            KC_LCTRL,            KC_LGUI,             KC_LSHIFT,           KC_GRAVE,     KC_CUT,                     KC_MINUS,            KC_3,                KC_5,                KC_6,                MT(MOD_RCTL, KC_EQUAL),
+            KC_LCTRL,            KC_LGUI,             KC_LSHIFT,           KC_GRAVE,     KC_CUT,                     KC_MINUS,            KC_4,                KC_5,                KC_6,                MT(MOD_RCTL, KC_EQUAL),
             KC_LALT,             KC_NUMLOCK,          KC_TRAN,             KC_TRAN,      KC_GRAVE,                   KC_COMMA,            KC_1,                KC_2,                KC_3,                KC_KP_DOT,
                                                       KC_NUMLOCK,          KC_TRAN,      QK_BOOTLOADER,              KC_TRAN,      KC_TRAN,      KC_0
     ),
@@ -103,35 +103,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef RGBLIGHT_ENABLE
 layer_state_t layer_state_set_user(layer_state_t state) {
-  uint8_t layer = get_highest_layer(state);
-  switch (layer) {
-      case BASE:
+    uint8_t layer = get_highest_layer(state);
+    switch (layer) {
+        case BASE:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
             rgblight_sethsv(HSV_OFF);
-        break;
-      case MOVE:
+            break;
+        case MOVE:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
             rgblight_sethsv(HSV_BLUE);
-        break;
-      case NUMPAD:
+            break;
+        case NUMPAD:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
             rgblight_sethsv(HSV_GREEN);
-        break;
-      case MOUSE_F:
-          rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-          rgblight_sethsv(HSV_CYAN);
-        break;
-      case SYMB:
-          rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-          rgblight_sethsv(HSV_GOLD);
-        break;
-  case GAMEM_L:
-  case GAMEM_R:
-          rgblight_mode_noeeprom(RGBLIGHT_MODE_KNIGHT);
-        break;
-      default:
-        break;
+            break;
+        case MOUSE_F:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+            rgblight_sethsv(HSV_CYAN);
+            break;
+        case SYMB:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+            rgblight_sethsv(HSV_GOLD);
+            break;
+        case GAMEM_L:
+        case GAMEM_R:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_KNIGHT);
+            break;
+        default:
+            break;
     }
-  return state;
+    return state;
 };
 #endif
