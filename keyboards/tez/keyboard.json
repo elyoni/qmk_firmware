@@ -22,6 +22,9 @@
         "transport": {
             "protocol": "serial",
             "watchdog": true
+            "sync": {
+                "layer_state": true
+            },
         },
     },
     "processor": "atmega32u4",
@@ -48,7 +51,8 @@
         "sleep": true,
         "default": {
             "on": true,
-            "animation": "snake",
+            "val": 100,
+            "animation": "rainbow_mood",
         },
         "max_brightness": 5,
         "brightness_steps": 5,
