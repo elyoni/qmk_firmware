@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_COPY,      KC_PASTE,                   KC_PLUS,             KC_7,                MT(MOD_RSFT, KC_8),  KC_9,                KC_SLASH ,
             KC_LCTRL,            KC_LGUI,             KC_LSHIFT,           KC_GRAVE,     KC_CUT,                     KC_MINUS,            KC_4,                KC_5,                KC_6,                MT(MOD_RCTL, KC_EQUAL),
             KC_LALT,             KC_NUMLOCK,          KC_TRAN,             KC_TRAN,      KC_GRAVE,                   KC_COMMA,            KC_1,                KC_2,                KC_3,                KC_KP_DOT,
-                                                      KC_NUMLOCK,          KC_TRAN,      QK_BOOTLOADER,              KC_TRAN,      KC_TRAN,      KC_0
+                                                      KC_NUMLOCK,          KC_TRAN,      KC_TRAN,                    KC_TRAN,      KC_TRAN,      KC_0
     ),
     [MOUSE_F] = LAYOUT_v3(
             KC_MS_WH_LEFT,       KC_MS_WH_DOWN,       KC_MS_UP,            KC_MS_WH_UP,         KC_MS_WH_RIGHT,              KC_F11,             KC_F7,               KC_F8,               KC_F9,               KC_F12,
@@ -93,10 +93,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       KC_NO,               KC_NO,               KC_NO,                      KC_NO,               KC_NO,               KC_NO
     ),
     [GAMEM_L] = LAYOUT_v3(
-            KC_ESCAPE,           KC_Q,                KC_W,                KC_E,                KC_R,                       KC_ESCAPE,           KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,
-            KC_LSHIFT,           KC_A,                KC_S,                KC_D,                KC_F,                       KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            KC_TRANSPARENT,
-            KC_LCTRL,            KC_Z,                KC_X,                KC_C,                KC_V,                       KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,
-                                                      KC_B,                KC_SPACE,            KC_G,                       KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT
+            KC_ESCAPE,          KC_Q,                KC_W,                KC_E,                KC_R,                       KC_ESCAPE,           KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      TG(BASE),
+            KC_LCTRL,           KC_A,                KC_S,                KC_D,                KC_F,                       KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            KC_TRANSPARENT,
+            KC_LSHIFT,          KC_Z,                KC_X,                KC_C,                KC_V,                       KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,
+                                                     KC_B,                KC_SPACE,            KC_G,                       KC_TRANSPARENT,      KC_TRANSPARENT,      TO(BASE)
+    ),
+    [GAMEM_R] = LAYOUT_v3(
+            KC_ESCAPE,          KC_Q,                KC_W,                KC_E,                KC_R,                       KC_ESCAPE,           KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      TG(BASE),
+            KC_LCTRL,           KC_A,                KC_S,                KC_D,                KC_F,                       KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            KC_TRANSPARENT,
+            KC_LSHIFT,          KC_Z,                KC_X,                KC_C,                KC_V,                       KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,
+                                                     KC_B,                KC_SPACE,            KC_G,                       KC_TRANSPARENT,      KC_TRANSPARENT,      TO(BASE)
     ),
 
 };
