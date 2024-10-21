@@ -35,7 +35,7 @@
         "extrakey": true,
         "console": false,
         "command": false,
-        "combo": false,
+        "combo": true,
         "nkro": true,
         "backlight": false,
         "rgb_matrix": false,

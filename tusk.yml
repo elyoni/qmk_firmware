@@ -1,0 +1,3 @@
+tasks:
+  tez:
+    run: qmk flash -kb tez -km default
