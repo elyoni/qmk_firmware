@@ -69,34 +69,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       KC_PRINT_SCREEN,     KC_TRANSPARENT,      KC_TRANSPARENT,             KC_TRANSPARENT,      KC_TRANSPARENT,      KC_NO
     ),
     [NUMPAD] = LAYOUT_v3(
-            KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_COPY,      KC_PASTE,                   KC_PLUS,             KC_7,                MT(MOD_RSFT, KC_8),  KC_9,                KC_SLASH ,
-            KC_LCTRL,            KC_LGUI,             KC_LSHIFT,           KC_GRAVE,     KC_CUT,                     KC_MINUS,            KC_4,                KC_5,                KC_6,                MT(MOD_RCTL, KC_EQUAL),
-            KC_LALT,             KC_NUMLOCK,          KC_TRAN,             KC_TRAN,      KC_GRAVE,                   KC_COMMA,            KC_1,                KC_2,                KC_3,                KC_KP_DOT,
-                                                      KC_NUMLOCK,          KC_TRAN,      KC_TRAN,                    KC_TRAN,      KC_TRAN,      KC_0
+            KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_COPY,      KC_PASTE,                                KC_PLUS,             KC_7,                MT(MOD_RSFT, KC_8),  KC_9,                KC_SLASH ,
+            KC_LCTRL,            KC_LGUI,             KC_LSHIFT,           KC_GRAVE,     KC_CUT,                                  KC_MINUS,            KC_4,                KC_5,                KC_6,                MT(MOD_RCTL, KC_EQUAL),
+            KC_LALT,             KC_NUMLOCK,          KC_TRAN,             KC_TRAN,      KC_GRAVE,                                KC_COMMA,            KC_1,                KC_2,                KC_3,                KC_KP_DOT,
+                                                      KC_NUMLOCK,          KC_TRAN,      KC_TRAN,                                 KC_TRAN,      KC_TRAN,      KC_0
     ),
     [MOUSE_F] = LAYOUT_v3(
-            KC_MS_WH_LEFT,       KC_MS_WH_DOWN,       KC_MS_UP,            KC_MS_WH_UP,         KC_MS_WH_RIGHT,              KC_F11,             KC_F7,               KC_F8,               KC_F9,               KC_F12,
-            KC_MS_BTN1,          KC_MS_LEFT,          KC_MS_DOWN,          KC_MS_RIGHT,         RCTL(KC_RSHIFT),             KC_TRANSPARENT,     KC_F4,               KC_F5,               KC_F6,               KC_F10,
-            KC_MS_BTN2,          KC_MS_BTN3,          KC_COPY,             KC_PASTE,            LCTL(KC_LSHIFT),             KC_TRANSPARENT,     KC_F1,               KC_F2,               KC_F3,               KC_TRANSPARENT,
-                                                      KC_TRANSPARENT,      KC_MS_BTN1,          KC_MS_BTN2,                  KC_MS_BTN1,         KC_MS_BTN2,          KC_MS_BTN1
+            KC_MS_WH_LEFT,       KC_MS_WH_DOWN,       KC_MS_UP,            KC_MS_WH_UP,         KC_MS_WH_RIGHT,                   KC_F11,             KC_F7,               KC_F8,               KC_F9,               KC_F12,
+            KC_MS_BTN1,          KC_MS_LEFT,          KC_MS_DOWN,          KC_MS_RIGHT,         RCTL(KC_RSHIFT),                  KC_TRANSPARENT,     KC_F4,               KC_F5,               KC_F6,               KC_F10,
+            KC_MS_BTN2,          KC_MS_BTN3,          KC_COPY,             KC_PASTE,            LCTL(KC_LSHIFT),                  KC_TRANSPARENT,     KC_F1,               KC_F2,               KC_F3,               KC_TRANSPARENT,
+                                                      KC_TRANSPARENT,      KC_MS_BTN1,          KC_MS_BTN2,                       KC_MS_BTN1,         KC_MS_BTN2,          KC_MS_BTN1
     ),
     [SYMB] = LAYOUT_v3(
-            KC_BSLASH,           KC_ESCAPE,           KC_ENTER,            KC_TRANSPARENT,      KC_TRANSPARENT,              KC_TRANSPARENT,      RSFT(KC_BSLASH),     KC_QUOTE,            KC_DQUO,             KC_BSLASH,
-            KC_M_ALL,            KC_TRANSPARENT,      KC_TRAN,             KC_TRANSPARENT,      KC_TRANSPARENT,             KC_UNDS,             KC_ASTR,             KC_HASH,             KC_DLR,              KC_UNDS,
-            KC_PC_UNDO,          KC_CUT,              KC_COPY,             KC_PASTE,            KC_TRANSPARENT,             KC_TRANSPARENT,      KC_TILD,             RSFT(KC_BSLASH),           KC_F4,         KC_EQUAL,
-                                                      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,             KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT
+            KC_BSLASH,           KC_ESCAPE,           KC_ENTER,            KC_TRANSPARENT,      KC_TRANSPARENT,                    KC_TRANSPARENT,      RSFT(KC_BSLASH),     KC_QUOTE,            KC_DQUO,             KC_BSLASH,
+            KC_M_ALL,            KC_TRANSPARENT,      KC_TRAN,             KC_TRANSPARENT,      KC_TRANSPARENT,                    KC_UNDS,             KC_ASTR,             KC_HASH,             KC_DLR,              KC_UNDS,
+            RCTL(KC_Z),          KC_CUT,              KC_COPY,             KC_PASTE,            KC_TRANSPARENT,                    KC_TRANSPARENT,      KC_TILD,             RSFT(KC_BSLASH),           KC_F4,         KC_EQUAL,
+                                                      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,                    KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT
     ),
     [OTHER] = LAYOUT_v3(
             KC_VOLU,             KC_MUTE,             KC_BRIU,             RGB_M_B,             RGB_TOG,                    KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
             KC_VOLD,             KC_NO,               KC_BRID,             KC_NO,               KC_NO,                      KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
-            KC_NO,               KC_NO,               KC_NO,               KC_NO,               QK_BOOTLOADER,              KC_NO,               KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
+            KC_NO,               KC_NO,               KC_NO,               KC_NO,               QK_BOOTLOADER,              QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
                                                       KC_NO,               KC_NO,               KC_NO,                      KC_NO,               KC_NO,               KC_NO
     ),
     [GAMEM_L] = LAYOUT_v3(
             KC_ESCAPE,          KC_Q,                KC_W,                KC_E,                KC_R,                       KC_ESCAPE,           KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      TG(BASE),
             KC_LCTRL,           KC_A,                KC_S,                KC_D,                KC_F,                       KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            KC_TRANSPARENT,
             KC_LSHIFT,          KC_Z,                KC_X,                KC_C,                KC_V,                       KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,
-                                                     KC_B,                KC_SPACE,            KC_G,                       KC_TRANSPARENT,      KC_TRANSPARENT,      TO(BASE)
+                                                     KC_B,                KC_SPACE,            KC_G,                       KC_BSPACE,           KC_ENTER,            KC_TRANSPARENT
     ),
     [GAMEM_R] = LAYOUT_v3(
             KC_ESCAPE,          KC_Q,                KC_W,                KC_E,                KC_R,                       KC_ESCAPE,           KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      TG(BASE),
@@ -133,7 +133,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
         case GAMEM_L:
         case GAMEM_R:
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_KNIGHT);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
+            rgblight_sethsv(HSV_BLUE);
             break;
         default:
             break;
@@ -141,3 +142,37 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 };
 #endif
+
+const uint16_t PROGMEM game_esc[] = {KC_SPACE, KC_T, COMBO_END};
+const uint16_t PROGMEM game1[] = {KC_G, KC_ESCAPE, COMBO_END};
+const uint16_t PROGMEM game2[] = {KC_G, KC_Q, COMBO_END};
+const uint16_t PROGMEM game3[] = {KC_G, KC_W, COMBO_END};
+const uint16_t PROGMEM game4[] = {KC_G, KC_E, COMBO_END};
+const uint16_t PROGMEM game5[] = {KC_G, KC_R, COMBO_END};
+
+const uint16_t PROGMEM game01[] = {KC_B, KC_ESCAPE, COMBO_END};
+const uint16_t PROGMEM game02[] = {KC_B, KC_Q, COMBO_END};
+const uint16_t PROGMEM game03[] = {KC_B, KC_W, COMBO_END};
+const uint16_t PROGMEM game04[] = {KC_B, KC_E, COMBO_END};
+const uint16_t PROGMEM game05[] = {KC_B, KC_R, COMBO_END};
+
+
+combo_t key_combos[] = {
+    COMBO(game1, KC_1),
+    COMBO(game2, KC_2),
+    COMBO(game3, KC_3),
+    COMBO(game4, KC_4),
+    COMBO(game5, KC_5),
+    COMBO(game01, KC_1),
+    COMBO(game02, KC_2),
+    COMBO(game03, KC_3),
+    COMBO(game04, KC_4),
+    COMBO(game05, KC_5),
+    COMBO(game_esc, KC_ESCAPE),
+};
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    if (layer_state_is(GAMEM_L) || layer_state_is(GAMEM_R)) {
+        return true;
+    }
+    return false;
+}
