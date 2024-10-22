@@ -156,23 +156,54 @@ const uint16_t PROGMEM game03[] = {KC_B, KC_W, COMBO_END};
 const uint16_t PROGMEM game04[] = {KC_B, KC_E, COMBO_END};
 const uint16_t PROGMEM game05[] = {KC_B, KC_R, COMBO_END};
 
-
-combo_t key_combos[] = {
-    COMBO(game1, KC_1),
-    COMBO(game2, KC_2),
-    COMBO(game3, KC_3),
-    COMBO(game4, KC_4),
-    COMBO(game5, KC_5),
-    COMBO(game01, KC_1),
-    COMBO(game02, KC_2),
-    COMBO(game03, KC_3),
-    COMBO(game04, KC_4),
-    COMBO(game05, KC_5),
-    COMBO(game_esc, KC_ESCAPE),
+// First, define your combo indexes
+enum combo_events {
+    GAME1_COMBO,
+    GAME2_COMBO,
+    GAME3_COMBO,
+    GAME4_COMBO,
+    GAME5_COMBO,
+    GAME01_COMBO,
+    GAME02_COMBO,
+    GAME03_COMBO,
+    GAME04_COMBO,
+    GAME05_COMBO,
+    GAME_ESC_COMBO,
 };
+
+// Your combo definitions with the enum indexes
+combo_t key_combos[] = {
+    [GAME1_COMBO] = COMBO(game1, KC_1),
+    [GAME2_COMBO] = COMBO(game2, KC_2),
+    [GAME3_COMBO] = COMBO(game3, KC_3),
+    [GAME4_COMBO] = COMBO(game4, KC_4),
+    [GAME5_COMBO] = COMBO(game5, KC_5),
+    [GAME01_COMBO] = COMBO(game01, KC_1),
+    [GAME02_COMBO] = COMBO(game02, KC_2),
+    [GAME03_COMBO] = COMBO(game03, KC_3),
+    [GAME04_COMBO] = COMBO(game04, KC_4),
+    [GAME05_COMBO] = COMBO(game05, KC_5),
+    [GAME_ESC_COMBO] = COMBO(game_esc, KC_ESCAPE),
+};
+
+// Combo trigger function that checks both combo index and layer
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    if (layer_state_is(GAMEM_L) || layer_state_is(GAMEM_R)) {
-        return true;
-    }
-    return false;
+    return layer_state_is(GAMEM_L) || layer_state_is(GAMEM_R);
+    /*switch (combo_index) {*/
+    /*    // First set of game combos (1-5)*/
+    /*    case GAME1_COMBO:*/
+    /*    case GAME2_COMBO:*/
+    /*    case GAME3_COMBO:*/
+    /*    case GAME4_COMBO:*/
+    /*    case GAME5_COMBO:*/
+    /*    case GAME01_COMBO:*/
+    /*    case GAME02_COMBO:*/
+    /*    case GAME03_COMBO:*/
+    /*    case GAME04_COMBO:*/
+    /*    case GAME05_COMBO:*/
+    /*    case GAME_ESC_COMBO:*/
+
+    /*    default:*/
+    /*        return true; // Allow other combos to work normally*/
+    /*}*/
 }
