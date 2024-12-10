@@ -5,11 +5,11 @@
 
 
 /* Layout
-    KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,               KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,
-    KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,               KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,
-    KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,               KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,
-    KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,               KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,
-                                      KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,               KC_TRANSPARENT,  KC_TRANSPARENT,  KC_TRANSPARENT,
+    KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,               KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,
+    KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,               KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,
+    KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,               KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,
+    KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,               KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,  KC_TRAN,
+                                      KC_TRAN,  KC_TRAN,  KC_TRAN,               KC_TRAN,  KC_TRAN,  KC_TRAN,
 */
 
 enum layer_names {
@@ -55,6 +55,24 @@ enum layer_names {
 #define U_UND LCTL(KC_Z)
 #define U_RDO LCTL(KC_Y)
 
+
+
+enum {
+    TD_SHIFT_ESC = 0,
+    TD_CTRL_2,
+    TD_ESC_1,
+    TD_Q_2,
+    TD_E_B
+};
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_SHIFT_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_LSHIFT, KC_ESCAPE),
+    [TD_ESC_1] = ACTION_TAP_DANCE_DOUBLE(KC_ESCAPE, KC_1),
+    [TD_Q_2] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_2),
+    [TD_CTRL_2] = ACTION_TAP_DANCE_DOUBLE(KC_LCTRL, KC_2),
+    [TD_E_B] = ACTION_TAP_DANCE_DOUBLE(KC_E, KC_B)
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_v3(
             KC_Q,                KC_W,                KC_E,                KC_R,                KC_T,                       KC_Y,                KC_U,                KC_I,                KC_O,                MT(MOD_LALT, KC_P),
@@ -63,10 +81,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       MO(OTHER),           LT(NUMPAD,KC_SPACE), KC_LSHIFT,                  LT(SYMB,KC_BSPACE),  LT(MOVE,KC_ENTER),   TT(OTHER)
 ),
     [MOVE] = LAYOUT_v3(
-            KC_TRANSPARENT,      KC_EXLM,             KC_LBRACKET,         KC_RBRACKET,         LSFT(KC_TAB),               KC_HOME,             KC_PGDOWN,           KC_PGUP,             KC_DELETE,           LSFT(KC_F10),
+            KC_TRAN,      KC_EXLM,             KC_LBRACKET,         KC_RBRACKET,         LSFT(KC_TAB),               KC_HOME,             KC_PGDOWN,           KC_PGUP,             KC_DELETE,           LSFT(KC_F10),
             KC_LCTRL,            LSFT(KC_LALT),       KC_LPRN,             KC_RPRN,             KC_TAB,                     KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            KC_RCTRL,
-            KC_LALT,             KC_TRANSPARENT,      KC_LCBR,             KC_RCBR,             KC_GRAVE,                   KC_END,              KC_INSERT,           KC_WBAK,             KC_WFWD,             KC_ENTER,
-                                                      KC_PRINT_SCREEN,     KC_TRANSPARENT,      KC_TRANSPARENT,             KC_TRANSPARENT,      KC_TRANSPARENT,      KC_NO
+            KC_LALT,             KC_TRAN,      KC_LCBR,             KC_RCBR,             KC_GRAVE,                   KC_END,              KC_INSERT,           KC_WBAK,             KC_WFWD,             KC_ENTER,
+                                                      KC_PRINT_SCREEN,     KC_TRAN,      KC_TRAN,             KC_TRAN,      KC_TRAN,      KC_NO
     ),
     [NUMPAD] = LAYOUT_v3(
             KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_COPY,      KC_PASTE,                                KC_PLUS,             KC_7,                MT(MOD_RSFT, KC_8),  KC_9,                KC_SLASH ,
@@ -76,33 +94,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [MOUSE_F] = LAYOUT_v3(
             KC_MS_WH_LEFT,       KC_MS_WH_DOWN,       KC_MS_UP,            KC_MS_WH_UP,         KC_MS_WH_RIGHT,                   KC_F11,             KC_F7,               KC_F8,               KC_F9,               KC_F12,
-            KC_MS_BTN1,          KC_MS_LEFT,          KC_MS_DOWN,          KC_MS_RIGHT,         RCTL(KC_RSHIFT),                  KC_TRANSPARENT,     KC_F4,               KC_F5,               KC_F6,               KC_F10,
-            KC_MS_BTN2,          KC_MS_BTN3,          KC_COPY,             KC_PASTE,            LCTL(KC_LSHIFT),                  KC_TRANSPARENT,     KC_F1,               KC_F2,               KC_F3,               KC_TRANSPARENT,
-                                                      KC_TRANSPARENT,      KC_MS_BTN1,          KC_MS_BTN2,                       KC_MS_BTN1,         KC_MS_BTN2,          KC_MS_BTN1
+            KC_MS_BTN1,          KC_MS_LEFT,          KC_MS_DOWN,          KC_MS_RIGHT,         RCTL(KC_RSHIFT),                  KC_TRAN,     KC_F4,               KC_F5,               KC_F6,               KC_F10,
+            KC_MS_BTN2,          KC_MS_BTN3,          KC_COPY,             KC_PASTE,            LCTL(KC_LSHIFT),                  KC_TRAN,     KC_F1,               KC_F2,               KC_F3,               KC_TRAN,
+                                                      KC_TRAN,      KC_MS_BTN1,          KC_MS_BTN2,                       KC_MS_BTN1,         KC_MS_BTN2,          KC_MS_BTN1
     ),
     [SYMB] = LAYOUT_v3(
-            KC_BSLASH,           KC_ESCAPE,           KC_ENTER,            KC_TRANSPARENT,      KC_TRANSPARENT,                    KC_TRANSPARENT,      RSFT(KC_BSLASH),     KC_QUOTE,            KC_DQUO,             KC_BSLASH,
-            KC_M_ALL,            KC_TRANSPARENT,      KC_TRAN,             KC_TRANSPARENT,      KC_TRANSPARENT,                    KC_UNDS,             KC_ASTR,             KC_HASH,             KC_DLR,              KC_UNDS,
-            RCTL(KC_Z),          KC_CUT,              KC_COPY,             KC_PASTE,            KC_TRANSPARENT,                    KC_TRANSPARENT,      KC_TILD,             RSFT(KC_BSLASH),           KC_F4,         KC_EQUAL,
-                                                      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,                    KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT
+            KC_BSLASH,           KC_ESCAPE,           KC_ENTER,            KC_TRAN,      KC_TRAN,                    KC_TRAN,      RSFT(KC_BSLASH),     KC_QUOTE,            KC_DQUO,             KC_BSLASH,
+            KC_M_ALL,            KC_TRAN,      KC_TRAN,             KC_TRAN,      KC_TRAN,                    KC_UNDS,             KC_ASTR,             KC_HASH,             KC_DLR,              KC_UNDS,
+            RCTL(KC_Z),          KC_CUT,              KC_COPY,             KC_PASTE,            KC_TRAN,                    KC_TRAN,      KC_TILD,             RSFT(KC_BSLASH),           KC_F4,         KC_EQUAL,
+                                                      KC_TRAN,      KC_TRAN,      KC_TRAN,                    KC_TRAN,      KC_TRAN,      KC_TRAN
     ),
     [OTHER] = LAYOUT_v3(
-            KC_VOLU,             KC_MUTE,             KC_BRIU,             RGB_M_B,             RGB_TOG,                    KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
+            KC_VOLU,             KC_MUTE,             KC_BRIU,             RGB_M_B,             RGB_TOG,                    KC_NO,               KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
             KC_VOLD,             KC_NO,               KC_BRID,             KC_NO,               KC_NO,                      KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
-            KC_NO,               KC_NO,               KC_NO,               KC_NO,               QK_BOOTLOADER,              QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
+            KC_NO,               KC_NO,               KC_NO,               KC_NO,               QK_BOOTLOADER,              QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               KC_NO,
                                                       KC_NO,               KC_NO,               KC_NO,                      KC_NO,               KC_NO,               KC_NO
     ),
     [GAMEM_L] = LAYOUT_v3(
-            KC_ESCAPE,          KC_Q,                KC_W,                KC_E,                KC_R,                       KC_ESCAPE,           KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      TG(BASE),
-            KC_LCTRL,           KC_A,                KC_S,                KC_D,                KC_F,                       KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            KC_TRANSPARENT,
-            KC_LSHIFT,          KC_Z,                KC_X,                KC_C,                KC_V,                       KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,
-                                                     KC_B,                KC_SPACE,            KC_G,                       KC_BSPACE,           KC_ENTER,            KC_TRANSPARENT
+            TD(TD_ESC_1),       TD(TD_Q_2),                KC_W,                TD(TD_E_B),          KC_R,                       KC_ESCAPE,      KC_TRAN,      KC_TRAN,      KC_TRAN,       TO(BASE),
+            TD(TD_CTRL_2),      KC_A,                KC_S,                KC_D,                KC_F,                       KC_LEFT,        KC_DOWN,      KC_UP,        KC_RIGHT,      KC_TRAN,
+            KC_LSHIFT,          KC_Z,                KC_X,                KC_C,                KC_V,                       KC_TRAN,        KC_TRAN,      KC_TRAN,      KC_TRAN,       KC_TRAN,
+                                                KC_B,                KC_SPACE,            TD(TD_SHIFT_ESC),           KC_BSPACE,      KC_ENTER,     KC_TRAN
     ),
     [GAMEM_R] = LAYOUT_v3(
-            KC_ESCAPE,          KC_Q,                KC_W,                KC_E,                KC_R,                       KC_ESCAPE,           KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      TG(BASE),
-            KC_LCTRL,           KC_A,                KC_S,                KC_D,                KC_F,                       KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            KC_TRANSPARENT,
-            KC_LSHIFT,          KC_Z,                KC_X,                KC_C,                KC_V,                       KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,      KC_TRANSPARENT,
-                                                     KC_B,                KC_SPACE,            KC_G,                       KC_TRANSPARENT,      KC_TRANSPARENT,      TO(BASE)
+            KC_ESCAPE,          KC_Q,                KC_W,                KC_E,                KC_R,                       KC_ESCAPE,    KC_TRAN,      KC_TRAN,      KC_TRAN,      TO(BASE),
+            KC_LCTRL,           KC_A,                KC_S,                KC_D,                KC_F,                       KC_LEFT,      KC_DOWN,      KC_UP,        KC_RIGHT,     KC_TRAN,
+            KC_LSHIFT,          KC_Z,                KC_X,                KC_C,                KC_B,                       KC_TRAN,      KC_TRAN,      KC_TRAN,      KC_TRAN,      KC_TRAN,
+                                                     KC_B,                KC_SPACE,            KC_LSHIFT,                  KC_TRAN,      KC_TRAN,      TO(BASE)
     ),
 
 };
@@ -133,7 +151,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
         case GAMEM_L:
         case GAMEM_R:
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
             rgblight_sethsv(HSV_BLUE);
             break;
         default:
@@ -143,18 +161,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 };
 #endif
 
-const uint16_t PROGMEM game_esc[] = {KC_SPACE, KC_T, COMBO_END};
-const uint16_t PROGMEM game1[] = {KC_G, KC_ESCAPE, COMBO_END};
-const uint16_t PROGMEM game2[] = {KC_G, KC_Q, COMBO_END};
-const uint16_t PROGMEM game3[] = {KC_G, KC_W, COMBO_END};
-const uint16_t PROGMEM game4[] = {KC_G, KC_E, COMBO_END};
-const uint16_t PROGMEM game5[] = {KC_G, KC_R, COMBO_END};
-
-const uint16_t PROGMEM game01[] = {KC_B, KC_ESCAPE, COMBO_END};
-const uint16_t PROGMEM game02[] = {KC_B, KC_Q, COMBO_END};
-const uint16_t PROGMEM game03[] = {KC_B, KC_W, COMBO_END};
-const uint16_t PROGMEM game04[] = {KC_B, KC_E, COMBO_END};
-const uint16_t PROGMEM game05[] = {KC_B, KC_R, COMBO_END};
+const uint16_t PROGMEM game1[] = {KC_LSHIFT, KC_ESCAPE, COMBO_END};
+const uint16_t PROGMEM game2[] = {KC_LSHIFT, KC_Q, COMBO_END};
+const uint16_t PROGMEM game3[] = {KC_LSHIFT, KC_W, COMBO_END};
+const uint16_t PROGMEM game4[] = {KC_LSHIFT, KC_E, COMBO_END};
+const uint16_t PROGMEM game5[] = {KC_LSHIFT, KC_R, COMBO_END};
 
 // First, define your combo indexes
 enum combo_events {
@@ -178,12 +189,6 @@ combo_t key_combos[] = {
     [GAME3_COMBO] = COMBO(game3, KC_3),
     [GAME4_COMBO] = COMBO(game4, KC_4),
     [GAME5_COMBO] = COMBO(game5, KC_5),
-    [GAME01_COMBO] = COMBO(game01, KC_1),
-    [GAME02_COMBO] = COMBO(game02, KC_2),
-    [GAME03_COMBO] = COMBO(game03, KC_3),
-    [GAME04_COMBO] = COMBO(game04, KC_4),
-    [GAME05_COMBO] = COMBO(game05, KC_5),
-    [GAME_ESC_COMBO] = COMBO(game_esc, KC_ESCAPE),
 };
 
 // Combo trigger function that checks both combo index and layer
