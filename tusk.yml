@@ -1,3 +1,8 @@
 tasks:
   tez:
-    run: qmk flash -kb tez -km default
+    options:
+      keybind:
+        default: default
+        short: b
+        usage: Type of keybinds
+    run: qmk flash -kb tez -km ${keybind}
