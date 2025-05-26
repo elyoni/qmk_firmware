@@ -51,6 +51,7 @@ enum layer_names {
 #define KC_PASTE2 LSFT(KC_INSERT)
 #define KC_CUT LCTL(KC_X)
 #define KC_M_ALL LCTL(KC_A)
+#define KC_CTLA LCTL(KC_A)
 
 #define U_UND LCTL(KC_Z)
 #define U_RDO LCTL(KC_Y)
@@ -79,9 +80,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_PRINT_SCREEN,     KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_NO
     ),
     [NUMPAD] = LAYOUT_v3(
-        KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_COPY,                 KC_PASTE,                   KC_PLUS,             KC_7,                MT(MOD_RSFT, KC_8),  KC_9,                KC_SLASH ,
+        KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_CTLA,                 KC_COPY,                    KC_PLUS,             KC_7,                MT(MOD_RSFT, KC_8),  KC_9,                KC_SLASH ,
         KC_LCTRL,            KC_LGUI,             KC_LSHIFT,           KC_GRAVE,                KC_CUT,                     KC_MINUS,            KC_4,                KC_5,                KC_6,                MT(MOD_RCTL, KC_EQUAL),
-        KC_LALT,             KC_NUMLOCK,          KC_TRAN,             KC_TRAN,                 KC_GRAVE,                   KC_COMMA,            KC_1,                KC_2,                KC_3,                KC_KP_DOT,
+        KC_LALT,             KC_NUMLOCK,          KC_TRAN,             KC_TRAN,                 KC_PASTE,                   KC_COMMA,            KC_1,                KC_2,                KC_3,                KC_KP_DOT,
                                                   KC_NUMLOCK,          KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_0
     ),
     [MOUSE_F] = LAYOUT_v3(
@@ -97,9 +98,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_TRAN,             KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_TRAN
     ),
     [OTHER] = LAYOUT_v3(
-        KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,                 RGB_TOG,                    KC_NO,               KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
+        KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,                 RGB_TOG,                    QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
         KC_VOLD,             MIC_MUTE,            KC_BRID,             KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
-        KC_NO,               KC_NO,               KC_NO,               KC_NO,                   QK_BOOTLOADER,              QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               KC_NO,
+        KC_NO,               KC_NO,               KC_NO,               KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
                                                   KC_NO,               KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO
     ),
     [GAMEM_L] = LAYOUT_v3(
