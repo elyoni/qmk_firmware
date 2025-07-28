@@ -10,6 +10,19 @@
   },
   "rgblight": {
     "led_count": 9
+    "sleep": true,
+    "default": {
+        "on": true,
+        "val": 100,
+        "animation": "rainbow_mood",
+    },
+    "brightness_steps": 100,
+    "animations": {
+        "breathing": true,
+        "knight": true,
+        "snake": true,
+        "rainbow_mood": true,
+    },
   },
   "ws2812": {
     "pin": "A1",
@@ -30,6 +43,10 @@
     "mousekey": true,
     "nkro": true,
     "rgblight": true
+  },
+  "tapping": {
+      "permissive_hold": true,
+      "term": 150
   },
   "matrix_pins": {
     "cols": ["B11", "B10", "B2", "B1", "A7", "B0"],

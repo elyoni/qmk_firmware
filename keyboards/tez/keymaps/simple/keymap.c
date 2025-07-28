@@ -62,20 +62,21 @@ enum layer_names {
 
 
 enum {
-    TD_E_B
+    TD_E_B,
+    DBL_MO_ENTER = SAFE_RANGE,
 };
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_v3(
-        KC_Q,                KC_W,                KC_E,                KC_R,                    KC_T,                       KC_Y,                KC_U,                KC_I,                KC_O,                MT(MOD_LALT, KC_P),
+        KC_Q,                KC_W,                LT(MOVE,KC_E),       KC_R,                    KC_T,                       KC_Y,                KC_U,                LT(MOVE,KC_I),       KC_O,                MT(MOD_LALT, KC_P),
         MT(MOD_LCTL, KC_A),  MT(MOD_LGUI, KC_S),  MT(MOD_LSFT, KC_D),  LT(NUMPAD,KC_F),         KC_G,                       KC_H,                KC_J,                MT(MOD_RSFT,KC_K),   MT(MOD_RGUI, KC_L),  MT(MOD_RCTL, KC_SCOLON),
         MT(MOD_LALT, KC_Z),  KC_X,                KC_C,                LT(SYMB,KC_V),           KC_B,                       KC_N,                KC_M,                KC_COMMA,            KC_DOT,              LT(MOUSE_F,KC_SLASH),
-                                                  MO(OTHER),           LT(NUMPAD,KC_SPACE),     KC_LSHIFT,                  LT(SYMB,KC_BSPACE),  LT(MOVE,KC_ENTER),   TT(OTHER)
+                                                  MO(MOVE),            LT(NUMPAD,KC_SPACE),     KC_LSHIFT,                  LT(MOVE,KC_BSPACE),  LT(MOVE,KC_ENTER),   TT(OTHER)
 ),
     [MOVE] = LAYOUT_v3(
         KC_TRAN,             KC_EXLM,             KC_LBRACKET,         KC_RBRACKET,             LSFT(KC_TAB),               KC_HOME,             KC_PGDOWN,           KC_PGUP,             KC_DELETE,           LSFT(KC_F10),
-        KC_LCTRL,            LSFT(KC_LALT),       KC_LPRN,             KC_RPRN,                 KC_TAB,                     KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            KC_RCTRL,
+        KC_LCTRL,            LSFT(KC_LALT),       KC_LPRN,             KC_RPRN,                 KC_TAB,                     KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            MT(MOD_RCTL, KC_ENTER),
         KC_LALT,             KC_TRAN,             KC_LCBR,             KC_RCBR,                 KC_GRAVE,                   KC_END,              KC_INSERT,           KC_WBAK,             KC_WFWD,             KC_ENTER,
                                                   KC_PRINT_SCREEN,     KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_NO
     ),
@@ -153,3 +154,32 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 };
 #endif
+
+static uint16_t last_tap = 0;
+static bool is_layer_active = false;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case DBL_MO_ENTER:
+            if (record->event.pressed) {
+                uint16_t now = timer_read();
+
+                // Detect double-tap within 200ms
+                if (timer_elapsed(last_tap) < 200) {
+                    tap_code(KC_ENTER);
+                    last_tap = 0;
+                } else {
+                    last_tap = now;
+                    is_layer_active = true;
+                    layer_on(MOVE);  // Replace with your layer
+                }
+            } else {
+                if (is_layer_active) {
+                    layer_off(MOVE);
+                    is_layer_active = false;
+                }
+            }
+            return false;
+    }
+    return true;
+}
