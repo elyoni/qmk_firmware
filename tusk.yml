@@ -3,7 +3,7 @@ tasks:
     description: "Rez - Right side only keyboard, 4 rows x 5 columns"
     options:
       keybind:
-        default: default
+        default: simple
         short: b
         usage: Type of keybinds
       flash:
