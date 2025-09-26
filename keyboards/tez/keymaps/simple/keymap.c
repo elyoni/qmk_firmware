@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_TRAN,             KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_TRAN
     ),
     [OTHER] = LAYOUT_v3(
-        KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,                 RGB_TOGGLE,                 QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TO(GAMEM_L),
+        KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,                 RGB_MODE_PLAIN,             QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
         KC_VOLD,             MIC_MUTE,            KC_BRID,             KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
         KC_NO,               KC_NO,               KC_NO,               KC_NO,                   HEBREW_TOGGLE,              KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
                                                   KC_NO,               KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO
