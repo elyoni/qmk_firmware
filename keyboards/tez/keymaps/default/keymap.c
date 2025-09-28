@@ -114,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             TD(TD_ESC_1),       TD(TD_Q_2),                KC_W,                TD(TD_E_B),          KC_R,                       KC_ESCAPE,      KC_TRAN,      KC_TRAN,      KC_TRAN,       TO(BASE),
             TD(TD_CTRL_2),      KC_A,                KC_S,                KC_D,                KC_F,                       KC_LEFT,        KC_DOWN,      KC_UP,        KC_RIGHT,      KC_TRAN,
             KC_LSHIFT,          KC_Z,                KC_X,                KC_C,                KC_V,                       KC_TRAN,        KC_TRAN,      KC_TRAN,      KC_TRAN,       KC_TRAN,
-                                                KC_B,                KC_SPACE,            TD(TD_SHIFT_ESC),           KC_BSPACE,      KC_ENTER,     KC_TRAN
+                                                KC_B,                KC_SPACE,                 TD(TD_SHIFT_ESC),           LT(MOVE,KC_BSPACE), LT(MOVE,KC_ENTER), LT(OTHER,KC_TRAN)
     ),
     [GAMEM_R] = LAYOUT_v3(
             KC_ESCAPE,          KC_Q,                KC_W,                KC_E,                KC_R,                       KC_ESCAPE,    KC_TRAN,      KC_TRAN,      KC_TRAN,      TO(BASE),

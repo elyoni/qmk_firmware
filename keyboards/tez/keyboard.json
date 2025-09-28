@@ -60,7 +60,7 @@
             "val": 100,
             "animation": "rainbow_mood",
         },
-        "max_brightness": 5,
+        "max_brightness": 250,
         "brightness_steps": 100,
         "animations": {
             "breathing": true,
