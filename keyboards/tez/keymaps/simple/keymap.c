@@ -14,13 +14,13 @@
 
 enum layer_names {
     BASE,
+    GAMEM_L,
+    GAMEM_R,
     MOVE,
     NUMPAD,
     MOUSE_F,
     SYMB,
     OTHER,
-    GAMEM_L,
-    GAMEM_R,
     GAME_NUM,
 };
 
@@ -64,21 +64,22 @@ enum layer_names {
 enum {
     TD_E_B,
     DBL_MO_ENTER = SAFE_RANGE,
+    GAME_MOVE_ENT,
 };
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_v3(
-        KC_Q,                KC_W,                LT(MOVE,KC_E),       KC_R,                    KC_T,                       KC_Y,                KC_U,                LT(MOVE,KC_I),       KC_O,                MT(MOD_LALT, KC_P),
+        KC_Q,                KC_W,                KC_E,                KC_R,                    KC_T,                       KC_Y,                KC_U,                LT(MOVE,KC_I),       KC_O,                MT(MOD_LALT, KC_P),
         MT(MOD_LCTL, KC_A),  MT(MOD_LGUI, KC_S),  MT(MOD_LSFT, KC_D),  LT(NUMPAD,KC_F),         KC_G,                       KC_H,                KC_J,                MT(MOD_RSFT,KC_K),   MT(MOD_RGUI, KC_L),  MT(MOD_RCTL, KC_SCOLON),
         MT(MOD_LALT, KC_Z),  KC_X,                KC_C,                LT(SYMB,KC_V),           KC_B,                       KC_N,                KC_M,                KC_COMMA,            KC_DOT,              LT(MOUSE_F,KC_SLASH),
-                                                  MO(MOVE),            LT(NUMPAD,KC_SPACE),     KC_LSHIFT,                  LT(MOVE,KC_BSPACE),  LT(MOVE,KC_ENTER),   TT(OTHER)
+                                                  MO(OTHER),           LT(NUMPAD,KC_SPACE),     KC_LSHIFT,                  KC_BSPACE,           MO(MOVE),            KC_ENTER
 ),
     [MOVE] = LAYOUT_v3(
         KC_TRAN,             KC_EXLM,             KC_LBRACKET,         KC_RBRACKET,             LSFT(KC_TAB),               KC_HOME,             KC_PGDOWN,           KC_PGUP,             KC_DELETE,           LSFT(KC_F10),
         KC_LCTRL,            LSFT(KC_LALT),       KC_LPRN,             KC_RPRN,                 KC_TAB,                     KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            MT(MOD_RCTL, KC_ENTER),
         KC_LALT,             KC_TRAN,             KC_LCBR,             KC_RCBR,                 KC_GRAVE,                   KC_END,              KC_INSERT,           KC_WBAK,             KC_WFWD,             KC_ENTER,
-                                                  KC_PRINT_SCREEN,     KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_NO
+                                                  KC_PRINT_SCREEN,     KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_TRAN
     ),
     [NUMPAD] = LAYOUT_v3(
         KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_CTLA,                 KC_COPY,                    KC_PLUS,             KC_7,                MT(MOD_RSFT, KC_8),  KC_9,                KC_SLASH ,
@@ -99,16 +100,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_TRAN,             KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_TRAN
     ),
     [OTHER] = LAYOUT_v3(
-        KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,                 RGB_TOG,                    QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
+        KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,                 RGB_TOG,                    QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TO(GAMEM_L),
         KC_VOLD,             MIC_MUTE,            KC_BRID,             KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
         KC_NO,               KC_NO,               KC_NO,               KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
                                                   KC_NO,               KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO
     ),
     [GAMEM_L] = LAYOUT_v3(
-        KC_ESC,              KC_Q,                KC_W,                KC_E,                    KC_R,                       KC_ESCAPE,           KC_TRAN,             KC_TRAN,             KC_TRAN,             TO(BASE),
-        KC_LCTRL,            KC_A,                KC_S,                KC_D,                    KC_F,                       KC_LEFT,             KC_DOWN,             KC_UP,               KC_RIGHT,            KC_TRAN,
-        KC_LSHIFT,           KC_Z,                KC_X,                KC_C,                    KC_V,                       KC_TRAN,             KC_TRAN,             KC_TRAN,             KC_TRAN,             KC_TRAN,
-                                                  KC_B,                KC_SPACE,                MO(GAMEM_R),                KC_BSPACE,           KC_ENTER,            KC_TRAN
+        KC_ESC,              KC_Q,                KC_W,                KC_E,                    KC_R,                       KC_Y,                KC_U,                KC_I,                KC_O,                TO(BASE),
+        KC_LCTRL,            KC_A,                KC_S,                KC_D,                    KC_F,                       KC_H,                KC_J,                KC_K,                KC_L,                KC_SCOLON,
+        KC_LSHIFT,           KC_Z,                KC_X,                KC_C,                    KC_V,                       KC_N,                KC_M,                KC_COMMA,            KC_DOT,              KC_SLASH,
+                                                  KC_B,                KC_SPACE,                MO(GAMEM_R),                LT(MOVE,KC_BSPACE),  MO(MOVE),            LT(OTHER,KC_TRAN)
     ),
     [GAMEM_R] = LAYOUT_v3(
         KC_1,                KC_2,                KC_3,                KC_4,                    KC_5,                       KC_ESCAPE,           KC_TRAN,             KC_TRAN,             KC_TRAN,             TO(BASE),
@@ -129,24 +130,31 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
         case MOVE:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-            rgblight_sethsv(HSV_BLUE);
+            rgblight_sethsv_noeeprom(170, 255, 50);  // Dim blue
             break;
         case NUMPAD:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-            rgblight_sethsv(HSV_GREEN);
+            rgblight_sethsv_noeeprom(85, 255, 50);   // Dim green
             break;
         case MOUSE_F:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-            rgblight_sethsv(HSV_CYAN);
+            rgblight_sethsv_noeeprom(128, 255, 50);  // Dim cyan
             break;
         case SYMB:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-            rgblight_sethsv(HSV_GOLD);
+            rgblight_sethsv_noeeprom(43, 255, 50);   // Dim gold
             break;
         case GAMEM_L:
-        case GAMEM_R:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-            rgblight_sethsv(HSV_BLUE);
+            rgblight_sethsv_noeeprom(0, 255, 255);  // Maximum brightness red for gaming
+            break;
+        case GAMEM_R:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+            rgblight_sethsv_noeeprom(20, 255, 255); // Maximum brightness orange for gaming
+            break;
+        case OTHER:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_sethsv_noeeprom(213, 255, 50);  // Dim purple
             break;
         default:
             break;
@@ -155,8 +163,24 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 };
 #endif
 
+/*void keyboard_post_init_user(void) {*/
+/*#ifdef RGBLIGHT_ENABLE*/
+    /*// Boot sequence: brief color indication*/
+    /*rgblight_enable();*/
+    /*rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);*/
+
+    /*// Flash green for 500ms to indicate successful boot*/
+    /*rgblight_sethsv(HSV_GREEN);*/
+    /*wait_ms(500);*/
+
+    /*// Then turn off for normal BASE layer behavior*/
+    /*rgblight_sethsv(HSV_OFF);*/
+/*#endif*/
+/*}*/
+
 static uint16_t last_tap = 0;
 static bool is_layer_active = false;
+static uint16_t game_move_press_time = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -177,6 +201,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (is_layer_active) {
                     layer_off(MOVE);
                     is_layer_active = false;
+                }
+            }
+            return false;
+        case GAME_MOVE_ENT:
+            if (record->event.pressed) {
+                // On press, record time and activate MOVE layer
+                game_move_press_time = timer_read();
+                layer_on(MOVE);
+            } else {
+                // On release, deactivate layer
+                layer_off(MOVE);
+                // If it was a quick tap (less than tapping term), send Enter
+                if (timer_elapsed(game_move_press_time) < TAPPING_TERM) {
+                    tap_code(KC_ENTER);
                 }
             }
             return false;
