@@ -91,9 +91,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 [MOVE] = LAYOUT_planck_grid(
-    KC_TRAN,            KC_EXLM,            KC_LBRACKET,         KC_RBRACKET,         LSFT(KC_TAB),       _______,   KC_BOOT,            KC_HOME,            KC_PGDOWN,         KC_PGUP,            KC_DELETE,          LSFT(KC_F10),
-    KC_LCTRL,           LSFT(KC_LALT),      KC_LPRN,             KC_RPRN,             KC_TAB,             _______,   _______,            KC_LEFT,            KC_DOWN,           KC_UP,              KC_RIGHT,           LT(KC_ENTER, KC_RCTRL),
-    KC_LALT,            KC_TRAN,            KC_LCBR,             KC_RCBR,             KC_GRAVE,           _______,   _______,            KC_END,             KC_INSERT,         KC_WBAK,            KC_WFWD,            KC_ENTER,
+    KC_TRAN,            KC_EXLM,            KC_LBRACKET,         KC_RBRACKET,         LSFT(KC_TAB),       _______,   KC_BOOT,            KC_PGUP,            KC_PGDOWN,         KC_ENTER,           KC_DELETE,          LSFT(KC_F10),
+    KC_LCTRL,           LSFT(KC_LALT),      KC_LPRN,             KC_RPRN,             KC_TAB,             _______,   _______,            KC_LEFT,            KC_DOWN,           KC_UP,              KC_RIGHT,           KC_RCTRL,
+    KC_LALT,            KC_TRAN,            KC_LCBR,             KC_RCBR,             KC_GRAVE,           _______,   _______,            KC_END,             KC_HOME,           KC_WBAK,            KC_WFWD,            KC_INSERT,
     _______,            _______,            KC_PRINT_SCREEN,     KC_TRAN,             KC_TRAN,            KC_TRAN,   KC_TRAN,            KC_TRAN,            KC_TRAN,           KC_NO,              _______,            _______
 ),
 
