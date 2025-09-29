@@ -86,13 +86,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,               KC_W,               KC_E,               KC_R,                KC_T,                _______,   TG(GAMEM_L),        KC_Y,               KC_U,              KC_I,               KC_O,               MT(MOD_LALT, KC_P),
     MT(MOD_LCTL, KC_A), MT(MOD_LGUI, KC_S), MT(MOD_LSFT, KC_D), LT(NUMPAD,KC_F),     KC_G,                _______,   _______,            KC_H,               KC_J,              MT(MOD_RSFT,KC_K),  MT(MOD_RGUI, KC_L), MT(MOD_RCTL, KC_SCOLON),
     MT(MOD_LALT, KC_Z), KC_X,               KC_C,               LT(SYMB,KC_V),       KC_B,                _______,   _______,            KC_N,               KC_M,              KC_COMM,            KC_DOT,             LT(MOUSE_F,KC_SLASH),
-    _______,            _______,            _______,            MO(OTHER),           LT(NUMPAD,KC_SPACE), KC_LSHIFT, LT(SYMB,KC_BSPACE), LT(MOVE,KC_ENTER), TT(OTHER),          _______,            _______,            _______
+    _______,            _______,            _______,            MO(OTHER),           LT(NUMPAD,KC_SPACE), KC_LSHIFT, LT(SYMB,KC_BSPACE), MO(MOVE),           KC_ENTER,          _______,            _______,            _______
 ),
 
 
 [MOVE] = LAYOUT_planck_grid(
-    KC_TRAN,            KC_EXLM,            KC_LBRACKET,         KC_RBRACKET,         LSFT(KC_TAB),       _______,   KC_BOOT,            KC_HOME,            KC_PGDOWN,         KC_PGUP,            KC_DELETE,          LSFT(KC_F9),
-    KC_LCTRL,           LSFT(KC_LALT),      KC_LPRN,             KC_RPRN,             KC_TAB,             _______,   _______,            KC_LEFT,            KC_DOWN,           KC_UP,              KC_RIGHT,           KC_RCTRL,
+    KC_TRAN,            KC_EXLM,            KC_LBRACKET,         KC_RBRACKET,         LSFT(KC_TAB),       _______,   KC_BOOT,            KC_HOME,            KC_PGDOWN,         KC_PGUP,            KC_DELETE,          LSFT(KC_F10),
+    KC_LCTRL,           LSFT(KC_LALT),      KC_LPRN,             KC_RPRN,             KC_TAB,             _______,   _______,            KC_LEFT,            KC_DOWN,           KC_UP,              KC_RIGHT,           LT(KC_ENTER, KC_RCTRL),
     KC_LALT,            KC_TRAN,            KC_LCBR,             KC_RCBR,             KC_GRAVE,           _______,   _______,            KC_END,             KC_INSERT,         KC_WBAK,            KC_WFWD,            KC_ENTER,
     _______,            _______,            KC_PRINT_SCREEN,     KC_TRAN,             KC_TRAN,            KC_TRAN,   KC_TRAN,            KC_TRAN,            KC_TRAN,           KC_NO,              _______,            _______
 ),
@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,              KC_Q,                KC_W,                KC_E,               KC_R,              KC_T,        _______,            KC_Y,                KC_U,              KC_I,               KC_O,               KC_P,
     KC_LCTRL,            KC_A,                KC_S,                KC_D,               KC_F,              KC_G,        _______,            KC_H,                KC_J,              KC_K,               KC_L,               KC_SCOLON,
     KC_LSHIFT,           KC_Z,                KC_X,                KC_C,               KC_V,              KC_B,        _______,            KC_N,                KC_M,              KC_COMM,            KC_DOT,             KC_SLASH,
-    KC_LALT,             _______,             KC_TRAN,            KC_TRAN,           KC_SPACE,            MO(GAMEM_R), KC_BSPACE,          KC_ENTER,            _______,           _______,            _______,            _______
+    KC_LALT,             _______,             KC_TRAN,            OTHER,               KC_SPACE,          MO(GAMEM_R), KC_BSPACE,          LT(MOVE,KC_ENTER),   LT(OTHER,KC_TRAN), _______,            _______,            _______
 ),
 [GAMEM_R] = LAYOUT_planck_grid(
     KC_1,                KC_2,                KC_3,                KC_4,                    KC_5,          _______,    TO(BASE),           KC_ESCAPE,           KC_TRAN,           KC_TRAN,            KC_TRAN,            TO(BASE),
@@ -227,24 +227,31 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
         case MOVE:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-            rgblight_sethsv(HSV_BLUE);
+            rgblight_sethsv_noeeprom(170, 255, 255);  // Max brightness blue
             break;
         case NUMPAD:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-            rgblight_sethsv(HSV_GREEN);
+            rgblight_sethsv_noeeprom(85, 255, 255);   // Max brightness green
             break;
         case MOUSE_F:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-            rgblight_sethsv(HSV_CYAN);
+            rgblight_sethsv_noeeprom(128, 255, 255);  // Max brightness cyan
             break;
         case SYMB:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-            rgblight_sethsv(HSV_GOLD);
+            rgblight_sethsv_noeeprom(43, 255, 255);   // Max brightness gold
+            break;
+        case OTHER:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_sethsv_noeeprom(213, 255, 255);  // Max brightness purple
             break;
         case GAMEM_L:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_sethsv_noeeprom(0, 255, 255);  // Max brightness red
+            break;
         case GAMEM_R:
             rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
-            rgblight_sethsv(0, 255, 255); // Bright red
+            rgblight_sethsv_noeeprom(20, 255, 255); // Max brightness orange
             break;
         default:
             break;
@@ -252,6 +259,21 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 };
 #endif
+
+void keyboard_post_init_user(void) {
+#ifdef RGBLIGHT_ENABLE
+    // Boot sequence: brief color indication
+    rgblight_enable();
+    rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+
+    // Flash green for 500ms to indicate successful boot
+    rgblight_sethsv(HSV_GREEN);
+    wait_ms(500);
+
+    // Then turn off for normal BASE layer behavior
+    rgblight_sethsv(HSV_OFF);
+#endif
+}
 
 #ifdef AUDIO_ENABLE
   float plover_song[][2]     = SONG(PLOVER_SOUND);
