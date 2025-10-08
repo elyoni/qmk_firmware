@@ -22,16 +22,19 @@
 
 enum layer_names {
     BASE,
+    GAMEM_L,
+    GAMEM_R,
     MOVE,
     NUMPAD,
     MOUSE_F,
     SYMB,
     OTHER,
-    GAMEM_L,
-    GAMEM_R,
     GAME_NUM,
 };
 
+enum custom_keycodes {
+    HEBREW_TOGGLE = SAFE_RANGE,
+};
 
 #define KC_BOOT QK_BOOTLOADER
 
@@ -92,34 +95,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [MOVE] = LAYOUT_planck_grid(
     KC_TRAN,            KC_EXLM,            KC_LBRACKET,         KC_RBRACKET,         LSFT(KC_TAB),       _______,   KC_BOOT,            KC_PGUP,            KC_PGDOWN,         KC_ENTER,           KC_DELETE,          LSFT(KC_F10),
-    KC_LCTRL,           LSFT(KC_LALT),      KC_LPRN,             KC_RPRN,             KC_TAB,             _______,   _______,            KC_LEFT,            KC_DOWN,           KC_UP,              KC_RIGHT,           KC_RCTRL,
-    KC_LALT,            KC_TRAN,            KC_LCBR,             KC_RCBR,             KC_GRAVE,           _______,   _______,            KC_END,             KC_HOME,           KC_WBAK,            KC_WFWD,            KC_INSERT,
+    KC_LCTRL,           LSFT(KC_LALT),      KC_LPRN,             KC_RPRN,             KC_TAB,             _______,   _______,            KC_LEFT,            KC_DOWN,           KC_UP,              KC_RIGHT,           MT(MOD_RCTL, KC_ENTER),
+    KC_LALT,            KC_TRAN,            KC_LCBR,             KC_RCBR,             KC_GRAVE,           _______,   _______,            KC_HOME,            KC_END,            KC_WBAK,            KC_WFWD,            KC_INSERT,
     _______,            _______,            KC_PRINT_SCREEN,     KC_TRAN,             KC_TRAN,            KC_TRAN,   KC_TRAN,            KC_TRAN,            KC_TRAN,           KC_NO,              _______,            _______
 ),
 
 [NUMPAD] = LAYOUT_planck_grid(
-    KC_BSPACE,           KC_ESCAPE,         KC_ENTER,            KC_COPY,             KC_PASTE,           _______,   _______,            KC_PLUS,            KC_7,              MT(MOD_RSFT, KC_8), KC_9,                KC_SLASH ,
+    KC_BSPACE,           KC_ESCAPE,         KC_ENTER,            KC_COPY,             KC_PASTE,           _______,   _______,            KC_PLUS,            KC_7,              KC_8,               KC_9,                KC_SLASH ,
     KC_LCTRL,            KC_LGUI,           KC_LSHIFT,           KC_GRAVE,            KC_CUT,             _______,   _______,            KC_MINUS,           KC_4,              KC_5,               KC_6,                MT(MOD_RCTL, KC_EQUAL),
     KC_LALT,             KC_NUMLOCK,        KC_TRAN,             KC_TRAN,             KC_GRAVE,           _______,   _______,            KC_COMMA,           KC_1,              KC_2,               KC_3,                KC_KP_DOT,
     _______,             _______,           _______,             KC_NUMLOCK,          KC_TRAN,            KC_TRAN,   KC_TRAN,            KC_TRAN,            KC_0,              _______,             _______,            _______
 ),
 [MOUSE_F] = LAYOUT_planck_grid(
-    KC_MS_WH_LEFT,       KC_MS_WH_DOWN,     KC_MS_UP,            KC_MS_WH_UP,         KC_MS_WH_RIGHT,     _______,   _______,            KC_F11,              KC_F7,               KC_F8,               KC_F9,               KC_F12,
-    KC_MS_BTN1,          KC_MS_LEFT,        KC_MS_DOWN,          KC_MS_RIGHT,         RCTL(KC_RSHIFT),    _______,   _______,            KC_TRAN,             KC_F4,               KC_F5,               KC_F6,               KC_F10,
-    KC_MS_BTN2,          KC_MS_BTN3,        KC_COPY,             KC_PASTE,            LCTL(KC_LSHIFT),    _______,   _______,            KC_TRAN,             KC_F1,               KC_F2,               KC_F3,               KC_TRAN,
-    _______,             _______,           _______,             KC_TRAN,             KC_MS_BTN1,         KC_MS_BTN2,KC_MS_BTN1,         KC_MS_BTN2,          KC_MS_BTN1,          _______,             _______,             _______
+    KC_MS_WH_LEFT,       KC_MS_WH_DOWN,     KC_MS_UP,            KC_MS_WH_UP,         KC_MS_WH_RIGHT,     _______,   _______,            KC_F11,             KC_F7,               KC_F8,               KC_F9,               KC_F12,
+    KC_MS_BTN1,          KC_MS_LEFT,        KC_MS_DOWN,          KC_MS_RIGHT,         RCTL(KC_RSHIFT),    _______,   _______,            KC_TRAN,            KC_F4,               KC_F5,               KC_F6,               KC_F10,
+    KC_MS_BTN2,          KC_MS_BTN3,        KC_COPY,             KC_PASTE,            LCTL(KC_LSHIFT),    _______,   _______,            KC_TRAN,            KC_F1,               KC_F2,               KC_F3,               KC_TRAN,
+    _______,             _______,           _______,             KC_TRAN,             KC_MS_BTN1,         KC_MS_BTN2,KC_MS_BTN1,         KC_MS_BTN2,         KC_MS_BTN1,          _______,             _______,             _______
 ),
 [SYMB] = LAYOUT_planck_grid(
-    KC_BSLASH,           KC_ESCAPE,           KC_ENTER,            KC_TRAN,            KC_TRAN,           _______,   _______,            KC_TRAN,             RSFT(KC_BSLASH),     KC_QUOTE,            KC_DQUO,             KC_BSLASH,
-    KC_M_ALL,            KC_TRAN,             KC_TRAN,             KC_TRAN,            KC_TRAN,           _______,   _______,            KC_UNDS,             KC_ASTR,             KC_HASH,             KC_DLR,              KC_UNDS,
-    RCTL(KC_Z),          KC_CUT,              KC_COPY,             KC_PASTE,           KC_TRAN,           _______,   _______,            KC_TRAN,             KC_TILD,             RSFT(KC_BSLASH),     KC_F4,               KC_EQUAL,
-    _______,             _______,             _______,             KC_TRAN,            KC_TRAN,           KC_TRAN,   KC_TRAN,            KC_TRAN,             KC_TRAN,             _______,             _______,             _______
+    KC_TRAN,             KC_TRAN,             KC_TRAN,             KC_TRAN,            KC_TRAN,           _______,   _______,            KC_TRAN,            RSFT(KC_BSLASH),     KC_QUOTE,            KC_DQUO,             KC_BSLASH,
+    KC_M_ALL,            KC_TRAN,             KC_TRAN,             KC_TRAN,            KC_TRAN,           _______,   _______,            KC_UNDS,            KC_ASTR,             KC_HASH,             KC_DLR,              KC_UNDS,
+    RCTL(KC_Z),          KC_TRAN,             KC_TRAN,             KC_PASTE,           KC_TRAN,           _______,   _______,            KC_TRAN,            KC_TILD,             RSFT(KC_BSLASH),     KC_F4,               KC_EQUAL,
+    _______,             _______,             _______,             KC_TRAN,            KC_TRAN,           KC_TRAN,   KC_TRAN,            KC_TRAN,            KC_TRAN,             _______,             _______,             _______
 ),
 [OTHER] = LAYOUT_planck_grid(
-    KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,            RGB_TOG,           _______,   _______,            KC_NO,               KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
-    KC_VOLD,             MIC_MUTE,            KC_BRID,             KC_NO,              KC_NO,             _______,   _______,            KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
-    KC_NO,               KC_NO,               KC_NO,               KC_NO,              KC_TRAN,           _______,   _______,            KC_TRAN,             KC_NO,               KC_NO,               KC_NO,               KC_NO,
-    _______,             _______,             _______,             KC_TRAN,            KC_TRAN,           KC_TRAN,   KC_TRAN,            KC_TRAN,             KC_TRAN,             _______,             _______,             _______
+    KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,            RGB_TOG,           _______,   _______,            KC_NO,              KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
+    KC_VOLD,             MIC_MUTE,            KC_BRID,             KC_NO,              KC_NO,             _______,   _______,            KC_NO,              KC_NO,               KC_NO,               KC_NO,               KC_NO,
+    KC_NO,               KC_NO,               KC_NO,               KC_NO,              HEBREW_TOGGLE,     _______,   _______,            KC_TRAN,            KC_NO,               KC_NO,               KC_NO,               KC_NO,
+    _______,             _______,             _______,             KC_TRAN,            KC_TRAN,           KC_TRAN,   KC_TRAN,            KC_TRAN,            KC_TRAN,             _______,             _______,             _______
 ),
 [GAMEM_L] = LAYOUT_planck_grid(
     KC_ESC,              KC_Q,                KC_W,                KC_E,               KC_R,              KC_T,        _______,            KC_Y,                KC_U,              KC_I,               KC_O,               KC_P,
@@ -216,6 +219,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+static bool hebrew_mode = false;
 
 #ifdef RGBLIGHT_ENABLE
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -273,6 +277,37 @@ void keyboard_post_init_user(void) {
     // Then turn off for normal BASE layer behavior
     rgblight_sethsv(HSV_OFF);
 #endif
+}
+
+// Apply HOLD_ON_OTHER_KEY_PRESS only to specific layer-tap keys
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(NUMPAD, KC_SPACE):
+        case LT(NUMPAD, KC_F):
+        case LT(SYMB, KC_BSPACE):
+            return true;  // Enable for frequently used layer-tap keys
+        default:
+            return false; // Disable for mod-tap keys and letter-based layer-taps
+    }
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case HEBREW_TOGGLE:
+            if (record->event.pressed) {
+                hebrew_mode = !hebrew_mode;
+                // Optional: Add visual feedback with RGB
+                #ifdef RGBLIGHT_ENABLE
+                if (hebrew_mode) {
+                    rgblight_sethsv_noeeprom(30, 255, 100);  // Orange indicator for Hebrew mode
+                } else {
+                    rgblight_sethsv_noeeprom(HSV_OFF);       // Turn off when back to English
+                }
+                #endif
+            }
+            return false;
+    }
+    return true;
 }
 
 #ifdef AUDIO_ENABLE
