@@ -9,8 +9,8 @@
         "device_version": "1.0.0"
     },
     "matrix_pins": {
-        "rows": [ "B3", "B2", "B6", "B4"]
-        "cols": [ "D0", "D4", "C6", "D7", "E6" ],
+        "rows": [ "B3", "B2", "B6", "B4"],
+        "cols": [ "D0", "D4", "C6", "D7", "E6" ]
     },
     "diode_direction": "COL2ROW",
     "debounce": 5,
@@ -22,16 +22,16 @@
         },
         "matrix_pins": {
             "right": {
-                "cols": [ "E6", "D7", "C6", "D4", "D0" ],
-            },
+                "cols": [ "E6", "D7", "C6", "D4", "D0" ]
+            }
         },
         "transport": {
             "protocol": "serial",
-            "watchdog": true
+            "watchdog": true,
             "sync": {
                 "layer_state": true
-            },
-        },
+            }
+        }
     },
     "processor": "atmega32u4",
     "bootloader": "caterina",
@@ -41,7 +41,7 @@
         "extrakey": true,
         "console": false,
         "command": false,
-        "combo":false,
+        "combo": true,
         "nkro": true,
         "backlight": false,
         "rgb_matrix": false,
@@ -58,7 +58,7 @@
         "default": {
             "on": true,
             "val": 100,
-            "animation": "rainbow_mood",
+            "animation": "rainbow_mood"
         },
         "max_brightness": 250,
         "brightness_steps": 100,
@@ -66,18 +66,17 @@
             "breathing": true,
             "knight": true,
             "snake": true,
-            "rainbow_mood": true,
-        }
+            "rainbow_mood": true
+        },
         "layers" : {
             "blink": false,
-            "enabled": true,
-        }
-
+            "enabled": true
+        },
         "split": true,
         "split_count": [2, 2]
     },
     "ws2812" : {
-        "pin": "B5",
+        "pin": "B5"
     },
     "layouts": {
         "LAYOUT_v3": {
