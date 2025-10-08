@@ -98,10 +98,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_NUMLOCK,          KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_0
     ),
     [MOUSE_F] = LAYOUT_v3(
-        KC_MS_WH_LEFT,       KC_MS_WH_DOWN,       KC_MS_UP,            KC_MS_WH_UP,             KC_MS_WH_RIGHT,             KC_F11,              KC_F7,               KC_F8,               KC_F9,               KC_F12,
-        KC_MS_BTN1,          KC_MS_LEFT,          KC_MS_DOWN,          KC_MS_RIGHT,             RCTL(KC_RSHIFT),            KC_TRAN,             KC_F4,               KC_F5,               KC_F6,               KC_F10,
-        KC_MS_BTN2,          KC_MS_BTN3,          KC_COPY,             KC_PASTE,                LCTL(KC_LSHIFT),            KC_TRAN,             KC_F1,               KC_F2,               KC_F3,               KC_TRAN,
-                                                  KC_TRAN,             KC_MS_BTN1,              KC_MS_BTN2,                 KC_MS_BTN1,          KC_MS_BTN2,          KC_MS_BTN1
+        MS_WHLL,             MS_WHLD,             MS_UP,               MS_WHLU,                 MS_WHLR,                    KC_F11,              KC_F7,               KC_F8,               KC_F9,               KC_F12,
+        MS_BTN1,             MS_LEFT,             MS_DOWN,             MS_RGHT,                 RCTL(KC_RSHIFT),            KC_TRAN,             KC_F4,               KC_F5,               KC_F6,               KC_F10,
+        MS_BTN2,             MS_BTN3,             KC_COPY,             KC_PASTE,                LCTL(KC_LSHIFT),            KC_TRAN,             KC_F1,               KC_F2,               KC_F3,               KC_TRAN,
+                                                  KC_TRAN,             MS_BTN1,                 MS_BTN2,                    MS_BTN1,             MS_BTN2,             MS_BTN1
     ),
     [SYMB] = LAYOUT_v3(
         KC_TRAN,             KC_TRAN,             KC_TRAN,             KC_TRAN,                 KC_TRAN,                    KC_TRAN,             RSFT(KC_BSLASH),     KC_QUOTE,            KC_DQUO,             KC_BSLASH,
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_TRAN,             KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_TRAN
     ),
     [OTHER] = LAYOUT_v3(
-        KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,                 RGB_TOG,                    QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TO(GAMEM_L),
+        KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,                 KC_NO,                      QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TO(GAMEM_L),
         KC_VOLD,             MIC_MUTE,            KC_BRID,             KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
         KC_NO,               KC_NO,               KC_NO,               KC_NO,                   HEBREW_TOGGLE,              KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
                                                   KC_NO,               KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO
