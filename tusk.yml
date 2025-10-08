@@ -1,8 +1,95 @@
 tasks:
-  tez:
+  rez:
+    description: "Rez - Right side only keyboard, 4 rows x 5 columns"
     options:
       keybind:
         default: default
         short: b
         usage: Type of keybinds
-    run: qmk flash -kb tez -km ${keybind}
+      flash:
+        default: false
+        short: f
+        type: bool
+        usage: Flash the keyboard after compiling
+    run: |
+      if [ "${flash}" = "true" ]; then
+        qmk flash -kb rez -km ${keybind}
+      else
+        qmk compile -kb rez -km ${keybind}
+      fi
+  gez:
+    description: "Gez V1 - Enhanced split ergonomic keyboard with 6-column layout"
+    options:
+      keybind:
+        default: default
+        short: b
+        usage: Type of keybinds
+      flash:
+        default: false
+        short: f
+        type: bool
+        usage: Flash the keyboard after compiling
+      side:
+        default: left
+        short: s
+        usage: Which side to flash (left/right)
+        values:
+          - left
+          - right
+    run: |
+      if [ "${flash}" = "true" ]; then
+        if [ "${side}" = "right" ]; then
+          qmk flash -kb gez -km ${keybind} -bl avrdude-split-right
+        else
+          qmk flash -kb gez -km ${keybind} -bl avrdude-split-left
+        fi
+      else
+        qmk compile -kb gez -km ${keybind}
+      fi
+  tez:
+    description: "Tez - 34-key split ergonomic keyboard with column stagger and thumb clusters"
+    options:
+      keybind:
+        default: default
+        short: b
+        usage: Type of keybinds
+      flash:
+        default: false
+        short: f
+        type: bool
+        usage: Flash the keyboard after compiling
+      side:
+        default: left
+        short: s
+        usage: Which side to flash (left/right)
+        values:
+          - left
+          - right
+    run: |
+      if [ "${flash}" = "true" ]; then
+        if [ "${side}" = "right" ]; then
+          qmk flash -kb tez -km ${keybind} -bl avrdude-split-right
+        else
+          qmk flash -kb tez -km ${keybind} -bl avrdude-split-left
+        fi
+      else
+        qmk compile -kb tez -km ${keybind}
+      fi
+  planck:
+    description: "Planck - 48-key ortholinear keyboard (4x12 grid layout), non-split, compact form factor"
+    options:
+      keymap:
+        default: yoni
+        short: k
+        usage: Type of keymap
+      flash:
+        default: false
+        short: f
+        type: bool
+        usage: Flash the keyboard after compiling
+    run: |
+      if [ "${flash}" = "true" ]; then
+        qmk flash --keyboard planck/rev6 -km ${keymap}
+      else
+        qmk compile --keyboard planck/rev6 -km ${keymap}
+      fi
