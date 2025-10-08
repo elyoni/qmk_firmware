@@ -92,8 +92,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_PRINT_SCREEN,     KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_TRAN
     ),
     [NUMPAD] = LAYOUT_v3(
-        KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_COPY,                 KC_PASTE,                   KC_PLUS,             KC_7,                KC_8,                KC_9,                KC_SLASH ,
-        KC_LCTRL,            KC_LGUI,             KC_LSHIFT,           KC_GRAVE,                KC_CUT,                     KC_MINUS,            KC_4,                KC_5,                KC_6,                MT(MOD_RCTL, KC_EQUAL),
+        KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_TRAN,                 KC_TRAN,                    KC_PLUS,             KC_7,                KC_8,                KC_9,                KC_SLASH ,
+        KC_LCTRL,            KC_LGUI,             KC_LSHIFT,           KC_GRAVE,                KC_TRAN,                    KC_MINUS,            KC_4,                KC_5,                KC_6,                MT(MOD_RCTL, KC_EQUAL),
         KC_LALT,             KC_NUMLOCK,          KC_TRAN,             KC_TRAN,                 KC_GRAVE,                   KC_COMMA,            KC_1,                KC_2,                KC_3,                KC_KP_DOT,
                                                   KC_NUMLOCK,          KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_0
     ),
