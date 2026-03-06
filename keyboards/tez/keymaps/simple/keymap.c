@@ -59,22 +59,23 @@ enum layer_names {
 #define MIC_MUTE KC_F20
 #define SPK_MUTE KC_MUTE
 
-// Combo definitions
-enum combo_events {
-    JF_ESC,
-    COMBO_LENGTH
-};
-uint16_t COMBO_LEN = COMBO_LENGTH;
+// Combo definitions - disabled
+// enum combo_events {
+//     JF_ESC,
+//     COMBO_LENGTH
+// };
+// uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM jf_combo[] = {KC_J, LT(NUMPAD,KC_F), COMBO_END};
+// const uint16_t PROGMEM jf_combo[] = {KC_J, LT(NUMPAD,KC_F), COMBO_END};
 
-combo_t key_combos[] = {
-    [JF_ESC] = COMBO(jf_combo, KC_ESC),
-};
+// combo_t key_combos[] = {
+//     [JF_ESC] = COMBO(jf_combo, KC_ESC),
+// };
 
 enum {
     TD_E_B,
     HEBREW_TOGGLE = SAFE_RANGE,
+    RGB_TOGGLE,
 };
 
 
@@ -92,9 +93,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_PRINT_SCREEN,     KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_TRAN
     ),
     [NUMPAD] = LAYOUT_v3(
-        KC_BSPACE,           KC_ESCAPE,           KC_ENTER,            KC_TRAN,                 KC_TRAN,                    KC_PLUS,             KC_7,                KC_8,                KC_9,                KC_SLASH ,
-        KC_LCTRL,            KC_LGUI,             KC_LSHIFT,           KC_GRAVE,                KC_TRAN,                    KC_MINUS,            KC_4,                KC_5,                KC_6,                MT(MOD_RCTL, KC_EQUAL),
-        KC_LALT,             KC_NUMLOCK,          KC_TRAN,             KC_TRAN,                 KC_GRAVE,                   KC_COMMA,            KC_1,                KC_2,                KC_3,                KC_KP_DOT,
+        KC_BSPACE,           KC_ESCAPE,           MS_BTN1,             MS_BTN2,                 KC_TRAN,                    KC_PLUS,             KC_7,                KC_8,                KC_9,                KC_SLASH ,
+        KC_LCTRL,            KC_LGUI,             KC_LSHIFT,           KC_GRAVE,                KC_ENTER,                   KC_MINUS,            KC_4,                KC_5,                KC_6,                MT(MOD_RCTL, KC_EQUAL),
+        KC_LALT,             KC_NUMLOCK,          KC_F13,              KC_TRAN,                 KC_GRAVE,                   KC_COMMA,            KC_1,                KC_2,                KC_3,                KC_KP_DOT,
                                                   KC_NUMLOCK,          KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_0
     ),
     [MOUSE_F] = LAYOUT_v3(
@@ -110,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   KC_TRAN,             KC_TRAN,                 KC_TRAN,                    KC_TRAN,             KC_TRAN,             KC_TRAN
     ),
     [OTHER] = LAYOUT_v3(
-        KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,                 KC_NO,                      QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TO(GAMEM_L),
+        KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,                 RGB_TOGGLE,                 QK_BOOTLOADER,       KC_NO,               KC_NO,               KC_NO,               TO(GAMEM_L),
         KC_VOLD,             MIC_MUTE,            KC_BRID,             KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
         KC_NO,               KC_NO,               KC_NO,               KC_NO,                   HEBREW_TOGGLE,              KC_NO,               KC_NO,               KC_NO,               KC_NO,               KC_NO,
                                                   KC_NO,               KC_NO,                   KC_NO,                      KC_NO,               KC_NO,               KC_NO
@@ -205,26 +206,48 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 #endif
             }
             return false;
+        case RGB_TOGGLE:
+            if (record->event.pressed) {
+                #ifdef RGBLIGHT_ENABLE
+                if (rgblight_is_enabled()) {
+                    rgblight_disable();
+                } else {
+                    rgblight_enable();
+                }
+                #endif
+            }
+            return false;
     }
     return true;
 }
 
-bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    // Disable jf combo when in Hebrew mode
-    if (combo_index == JF_ESC && hebrew_mode) {
-        return false;
-    }
-    return true;
-}
+// Combo disabled - no longer needed
+// bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+//     // Disable jf combo when in Hebrew mode
+//     if (combo_index == JF_ESC && hebrew_mode) {
+//         return false;
+//     }
+//     return true;
+// }
 
 // Apply HOLD_ON_OTHER_KEY_PRESS only to specific layer-tap keys
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LT(NUMPAD, KC_SPACE):
-        case LT(NUMPAD, KC_F):
         case LT(SYMB, KC_BSPACE):
+        case LT(NUMPAD, KC_F):
             return true;  // Enable for frequently used layer-tap keys
         default:
             return false; // Disable for mod-tap keys and letter-based layer-taps
+    }
+}
+
+// Increase tapping term for F key to prevent accidental NUMPAD activation during fast typing
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(NUMPAD, KC_F):
+            return TAPPING_TERM + 50;  // Require longer hold for F key
+        default:
+            return TAPPING_TERM;
     }
 }

@@ -75,6 +75,35 @@ tasks:
       else
         qmk compile -kb tez -km ${keybind}
       fi
+  ergodox:
+    description: "Ergodox EZ - Split ergonomic keyboard with thumb clusters"
+    options:
+      keybind:
+        default: yoni
+        short: b
+        usage: Type of keybinds
+      flash:
+        default: false
+        short: f
+        type: bool
+        usage: Flash the keyboard after compiling
+      side:
+        default: left
+        short: s
+        usage: Which side to flash (left/right)
+        values:
+          - left
+          - right
+    run: |
+      if [ "${flash}" = "true" ]; then
+        if [ "${side}" = "right" ]; then
+          qmk flash -kb ergodox_ez -km ${keybind} -bl avrdude-split-right
+        else
+          qmk flash -kb ergodox_ez -km ${keybind} -bl avrdude-split-left
+        fi
+      else
+        qmk compile -kb ergodox_ez -km ${keybind}
+      fi
   planck:
     description: "Planck - 48-key ortholinear keyboard (4x12 grid layout), non-split, compact form factor"
     options:

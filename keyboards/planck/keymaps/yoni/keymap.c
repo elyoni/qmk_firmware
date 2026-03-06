@@ -34,6 +34,7 @@ enum layer_names {
 
 enum custom_keycodes {
     HEBREW_TOGGLE = SAFE_RANGE,
+    RGB_TOGGLE,
 };
 
 #define KC_BOOT QK_BOOTLOADER
@@ -101,16 +102,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [NUMPAD] = LAYOUT_planck_grid(
-    KC_BSPACE,           KC_ESCAPE,         KC_ENTER,            KC_COPY,             KC_PASTE,           _______,   _______,            KC_PLUS,            KC_7,              KC_8,               KC_9,                KC_SLASH ,
-    KC_LCTRL,            KC_LGUI,           KC_LSHIFT,           KC_GRAVE,            KC_CUT,             _______,   _______,            KC_MINUS,           KC_4,              KC_5,               KC_6,                MT(MOD_RCTL, KC_EQUAL),
-    KC_LALT,             KC_NUMLOCK,        KC_TRAN,             KC_TRAN,             KC_GRAVE,           _______,   _______,            KC_COMMA,           KC_1,              KC_2,               KC_3,                KC_KP_DOT,
+    KC_BSPACE,           KC_ESCAPE,         MS_BTN1,             MS_BTN2,             KC_TRAN,            _______,   _______,            KC_PLUS,            KC_7,              KC_8,               KC_9,                KC_SLASH ,
+    KC_LCTRL,            KC_LGUI,           KC_LSHIFT,           KC_GRAVE,            KC_ENTER,           _______,   _______,            KC_MINUS,           KC_4,              KC_5,               KC_6,                MT(MOD_RCTL, KC_EQUAL),
+    KC_LALT,             KC_NUMLOCK,        KC_F13,              KC_TRAN,             KC_GRAVE,           _______,   _______,            KC_COMMA,           KC_1,              KC_2,               KC_3,                KC_KP_DOT,
     _______,             _______,           _______,             KC_NUMLOCK,          KC_TRAN,            KC_TRAN,   KC_TRAN,            KC_TRAN,            KC_0,              _______,             _______,            _______
 ),
 [MOUSE_F] = LAYOUT_planck_grid(
-    KC_MS_WH_LEFT,       KC_MS_WH_DOWN,     KC_MS_UP,            KC_MS_WH_UP,         KC_MS_WH_RIGHT,     _______,   _______,            KC_F11,             KC_F7,               KC_F8,               KC_F9,               KC_F12,
-    KC_MS_BTN1,          KC_MS_LEFT,        KC_MS_DOWN,          KC_MS_RIGHT,         RCTL(KC_RSHIFT),    _______,   _______,            KC_TRAN,            KC_F4,               KC_F5,               KC_F6,               KC_F10,
-    KC_MS_BTN2,          KC_MS_BTN3,        KC_COPY,             KC_PASTE,            LCTL(KC_LSHIFT),    _______,   _______,            KC_TRAN,            KC_F1,               KC_F2,               KC_F3,               KC_TRAN,
-    _______,             _______,           _______,             KC_TRAN,             KC_MS_BTN1,         KC_MS_BTN2,KC_MS_BTN1,         KC_MS_BTN2,         KC_MS_BTN1,          _______,             _______,             _______
+    MS_WHLL,             MS_WHLD,           MS_UP,               MS_WHLU,             MS_WHLR,            _______,   _______,            KC_F11,             KC_F7,               KC_F8,               KC_F9,               KC_F12,
+    MS_BTN1,             MS_LEFT,           MS_DOWN,             MS_RGHT,             RCTL(KC_RSHIFT),    _______,   _______,            KC_TRAN,            KC_F4,               KC_F5,               KC_F6,               KC_F10,
+    MS_BTN2,             MS_BTN3,           KC_COPY,             KC_PASTE,            LCTL(KC_LSHIFT),    _______,   _______,            KC_TRAN,            KC_F1,               KC_F2,               KC_F3,               KC_TRAN,
+    _______,             _______,           _______,             KC_TRAN,             MS_BTN1,            MS_BTN2,   MS_BTN1,            MS_BTN2,            MS_BTN1,             _______,             _______,             _______
 ),
 [SYMB] = LAYOUT_planck_grid(
     KC_TRAN,             KC_TRAN,             KC_TRAN,             KC_TRAN,            KC_TRAN,           _______,   _______,            KC_TRAN,            RSFT(KC_BSLASH),     KC_QUOTE,            KC_DQUO,             KC_BSLASH,
@@ -119,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,             _______,             _______,             KC_TRAN,            KC_TRAN,           KC_TRAN,   KC_TRAN,            KC_TRAN,            KC_TRAN,             _______,             _______,             _______
 ),
 [OTHER] = LAYOUT_planck_grid(
-    KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,            RGB_TOG,           _______,   _______,            KC_NO,              KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
+    KC_VOLU,             SPK_MUTE,            KC_BRIU,             RGB_M_B,            RGB_TOGGLE,        _______,   _______,            KC_NO,              KC_NO,               KC_NO,               KC_NO,               TG(GAMEM_L),
     KC_VOLD,             MIC_MUTE,            KC_BRID,             KC_NO,              KC_NO,             _______,   _______,            KC_NO,              KC_NO,               KC_NO,               KC_NO,               KC_NO,
     KC_NO,               KC_NO,               KC_NO,               KC_NO,              HEBREW_TOGGLE,     _______,   _______,            KC_TRAN,            KC_NO,               KC_NO,               KC_NO,               KC_NO,
     _______,             _______,             _______,             KC_TRAN,            KC_TRAN,           KC_TRAN,   KC_TRAN,            KC_TRAN,            KC_TRAN,             _______,             _______,             _______
@@ -226,35 +227,35 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     uint8_t layer = get_highest_layer(state);
     switch (layer) {
         case BASE:
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_mode_noeeprom(1);  // Static light mode
             rgblight_sethsv(HSV_OFF);
             break;
         case MOVE:
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+            rgblight_mode_noeeprom(2);  // Breathing mode
             rgblight_sethsv_noeeprom(170, 255, 255);  // Max brightness blue
             break;
         case NUMPAD:
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+            rgblight_mode_noeeprom(2);  // Breathing mode
             rgblight_sethsv_noeeprom(85, 255, 255);   // Max brightness green
             break;
         case MOUSE_F:
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+            rgblight_mode_noeeprom(2);  // Breathing mode
             rgblight_sethsv_noeeprom(128, 255, 255);  // Max brightness cyan
             break;
         case SYMB:
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+            rgblight_mode_noeeprom(2);  // Breathing mode
             rgblight_sethsv_noeeprom(43, 255, 255);   // Max brightness gold
             break;
         case OTHER:
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_mode_noeeprom(1);  // Static light mode
             rgblight_sethsv_noeeprom(213, 255, 255);  // Max brightness purple
             break;
         case GAMEM_L:
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_mode_noeeprom(1);  // Static light mode
             rgblight_sethsv_noeeprom(0, 255, 255);  // Max brightness red
             break;
         case GAMEM_R:
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING+0);
+            rgblight_mode_noeeprom(2);  // Breathing mode
             rgblight_sethsv_noeeprom(20, 255, 255); // Max brightness orange
             break;
         default:
@@ -283,11 +284,21 @@ void keyboard_post_init_user(void) {
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LT(NUMPAD, KC_SPACE):
-        case LT(NUMPAD, KC_F):
         case LT(SYMB, KC_BSPACE):
+        case LT(NUMPAD, KC_F):
             return true;  // Enable for frequently used layer-tap keys
         default:
             return false; // Disable for mod-tap keys and letter-based layer-taps
+    }
+}
+
+// Increase tapping term for F key to prevent accidental NUMPAD activation during fast typing
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(NUMPAD, KC_F):
+            return TAPPING_TERM + 50;  // Require longer hold for F key
+        default:
+            return TAPPING_TERM;
     }
 }
 
@@ -302,6 +313,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     rgblight_sethsv_noeeprom(30, 255, 100);  // Orange indicator for Hebrew mode
                 } else {
                     rgblight_sethsv_noeeprom(HSV_OFF);       // Turn off when back to English
+                }
+                #endif
+            }
+            return false;
+        case RGB_TOGGLE:
+            if (record->event.pressed) {
+                #ifdef RGBLIGHT_ENABLE
+                if (rgblight_is_enabled()) {
+                    rgblight_disable();
+                } else {
+                    rgblight_enable();
                 }
                 #endif
             }
