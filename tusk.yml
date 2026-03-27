@@ -76,7 +76,7 @@ tasks:
         qmk compile -kb tez -km ${keybind}
       fi
   ergodox:
-    description: "Ergodox EZ - Split ergonomic keyboard with thumb clusters"
+    description: "Ergodox EZ - Split ergonomic keyboard with thumb clusters (uses HalfKay bootloader)"
     options:
       keybind:
         default: yoni
@@ -87,23 +87,30 @@ tasks:
         short: f
         type: bool
         usage: Flash the keyboard after compiling
-      side:
-        default: left
-        short: s
-        usage: Which side to flash (left/right)
-        values:
-          - left
-          - right
     run: |
       if [ "${flash}" = "true" ]; then
-        if [ "${side}" = "right" ]; then
-          qmk flash -kb ergodox_ez -km ${keybind} -bl avrdude-split-right
-        else
-          qmk flash -kb ergodox_ez -km ${keybind} -bl avrdude-split-left
-        fi
+        qmk flash -kb ergodox_ez -km ${keybind}
       else
         qmk compile -kb ergodox_ez -km ${keybind}
       fi
+  install:
+    description: "Install dependencies needed for flashing keyboards (teensy-loader-cli, udev rules)"
+    run: |
+      echo "Installing teensy-loader-cli..."
+      if command -v apt-get >/dev/null 2>&1; then
+        sudo apt-get install -y teensy-loader-cli libusb-dev
+      else
+        echo "apt-get not found, building teensy-loader-cli from source..."
+        sudo apt-get install -y libusb-dev || true
+        git clone https://github.com/PaulStoffregen/teensy_loader_cli /tmp/teensy_loader_cli
+        make -C /tmp/teensy_loader_cli
+        sudo cp /tmp/teensy_loader_cli/teensy_loader_cli /usr/local/bin/teensy-loader-cli
+        rm -rf /tmp/teensy_loader_cli
+      fi
+      echo "Installing QMK udev rules..."
+      sudo cp util/udev/50-qmk.rules /etc/udev/rules.d/
+      sudo udevadm control --reload-rules && sudo udevadm trigger
+      echo "Done! You may need to re-plug your keyboard."
   planck:
     description: "Planck - 48-key ortholinear keyboard (4x12 grid layout), non-split, compact form factor"
     options:
