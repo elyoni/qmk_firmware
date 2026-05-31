@@ -233,20 +233,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // Apply HOLD_ON_OTHER_KEY_PRESS only to specific layer-tap keys
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LT(NUMPAD, KC_SPACE):
         case LT(SYMB, KC_BSPACE):
-        case LT(NUMPAD, KC_F):
-            return true;  // Enable for frequently used layer-tap keys
+            return true;
         default:
-            return false; // Disable for mod-tap keys and letter-based layer-taps
+            return false;
     }
 }
 
-// Increase tapping term for F key to prevent accidental NUMPAD activation during fast typing
+// Longer tapping term for space and F so fast typing overlaps don't trigger NUMPAD
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case LT(NUMPAD, KC_SPACE):
         case LT(NUMPAD, KC_F):
-            return TAPPING_TERM + 50;  // Require longer hold for F key
+            return 300;
         default:
             return TAPPING_TERM;
     }
