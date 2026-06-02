@@ -280,23 +280,38 @@ void keyboard_post_init_user(void) {
 #endif
 }
 
-// Apply HOLD_ON_OTHER_KEY_PRESS only to specific layer-tap keys
-bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+// Disable permissive hold for LT keys on letter positions — permissive hold fires
+// when another key is pressed+released while the LT key is held, which corrupts
+// fast typing (e.g. "server" → "serer"). MT keys keep it for responsive mod activation.
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case LT(SYMB, KC_V):
         case LT(NUMPAD, KC_SPACE):
-        case LT(SYMB, KC_BSPACE):
         case LT(NUMPAD, KC_F):
-            return true;  // Enable for frequently used layer-tap keys
+        case LT(MOUSE_F, KC_SLASH):
+            return false;
         default:
-            return false; // Disable for mod-tap keys and letter-based layer-taps
+            return true;
     }
 }
 
-// Increase tapping term for F key to prevent accidental NUMPAD activation during fast typing
+// Apply HOLD_ON_OTHER_KEY_PRESS only to backspace (thumb key) — not letter-position LT keys
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(SYMB, KC_BSPACE):
+            return true;
+        default:
+            return false;
+    }
+}
+
+// Longer tapping term for letter-position LT keys to prevent accidental layer activation
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case LT(NUMPAD, KC_SPACE):
         case LT(NUMPAD, KC_F):
-            return TAPPING_TERM + 50;  // Require longer hold for F key
+        case LT(SYMB, KC_V):
+            return 300;
         default:
             return TAPPING_TERM;
     }

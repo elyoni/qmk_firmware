@@ -58,3 +58,6 @@
 
 // Enable per-key tapping term configuration
 #define TAPPING_TERM_PER_KEY
+
+// Enable per-key permissive hold override
+#define PERMISSIVE_HOLD_PER_KEY
