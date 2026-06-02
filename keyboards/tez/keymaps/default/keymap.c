@@ -230,6 +230,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //     return true;
 // }
 
+// Disable permissive hold for LT keys on letter positions — permissive hold fires
+// when another key is pressed+released while the LT key is held, which corrupts
+// fast typing (e.g. "server" → "serer"). MT keys keep it for responsive mod activation.
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(SYMB, KC_V):
+        case LT(NUMPAD, KC_SPACE):
+        case LT(NUMPAD, KC_F):
+        case LT(MOUSE_F, KC_SLASH):
+            return false;
+        default:
+            return true;
+    }
+}
+
 // Apply HOLD_ON_OTHER_KEY_PRESS only to specific layer-tap keys
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
